@@ -13,8 +13,8 @@
         dropDownOption.textContent = "Costomer Review Count";
 
         var url = window.location.href;
-        if (url.indexOf('s=review-rank') > -1){
-            url = url.replace('s=review-rank','s=review-count-rank');
+        if (url.indexOf('=review-rank') > -1){
+            url = url.replace('=review-rank','=review-count-rank');
             window.location.href = url;
         }
     }
