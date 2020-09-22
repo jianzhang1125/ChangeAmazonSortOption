@@ -1,27 +1,22 @@
 // ==UserScript==
-// @name         Amazon: Sort by Review Count Rank
-// @namespace    http://felixfischer.com/
-// @version      1.1
-// @description  Adds an option to sort search results by number of reviews
-// @author       Felix Fischer
-// @supportURL   https://github.com/felixfischer/sort-amazon-results-by-review-count/issues
+// @name         Change Amazon Sort Option
+// @author       Eli
+// @supportURL   https://github.com/jianzhang1125/ChangeAmazonSortOption/
 // @include      *www.amazon.*
 // @run-at       document-start
 // @grant        none
 // ==/UserScript==
 
 (function() {
+    function changeOption() {
+        var dropDownOption = document.getElementById('s-result-sort-select_3');
+        dropDownOption.textContent = "Costomer Review Count";
 
-    function addOption() {
-        var sortDropdown = document.getElementById('sort');
-        var hasOption = document.getElementById('sort-rcr');
-        if (sortDropdown && !hasOption) {
-            console.log('insert sort option: Review Count Rank');
-            var newOption = '<option value="review-count-rank" id="sort-rcr">Review Count Rank</option>';
-            sortDropdown.insertAdjacentHTML('beforeend', newOption);
+        var url = window.location.href;
+        if (url.indexOf('s=review-rank') > -1){
+            url = url.replace('s=review-rank','s=review-count-rank');
+            window.location.href = url;
         }
     }
-
-    setInterval(addOption, 1000);
-
+    setInterval(changeOption, 300);
 })();
